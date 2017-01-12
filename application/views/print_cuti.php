@@ -14,7 +14,7 @@ $this->fpdf->AddPage();
 $this->fpdf->SetFont('Times','B',14); 
 
 /* Kita akan membuat header dari halaman pdf yang kita buat -------------- Header Halaman dimulai dari baris ini ----------------------------- */ 
-$this->fpdf->Cell(19,0.5,'PT. QPRO Sukses Mandiri',0,0,'L'); 
+$this->fpdf->Cell(19,0.5,'PT. QPRO Consulting',0,0,'L'); 
 $this->fpdf->SetFont('Times','',12);
 $this->fpdf->Ln(); $this->fpdf->Cell(19,0.5,'Plaza Sentral Lt.9 No.904',0,0,'L');
 $this->fpdf->Ln(); $this->fpdf->Cell(19,0.5,'Jl. Jenderal Sudirman Kav.47',0,0,'L');
