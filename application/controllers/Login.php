@@ -47,10 +47,16 @@ class Login extends CI_Controller {
 			{
 				$sess_data['logged_in'] = 'loginasadmin';
 			}
+
+			$getboss = $this->apps_model->manualQuery("SELECT * FROM ms_posisi_karyawan WHERE atasan_1='".$dtk[0]->jabatan."'");
+			$dtBoss = $getboss->result();
+
 			$sess_data['nama'] = $dtk[0]->nm_lengkap;
 			$sess_data['email'] = $dtk[0]->email;
 			$sess_data['nik'] = $dtk[0]->nik;
 			$sess_data['prioritas'] = $dtj[0]->prioritas_jabatan;
+			$sess_data['divisi'] = $dtk[0]->departemen;
+			$sess_data['isTheBoss'] = count($dtBoss);
 			$sess_data['login_time'] = $this->qm->Hari_Bulan_Indo().", ".$this->qm->tgl_now_indo()." ".$this->qm->Jam_Now();
 			$this->session->set_userdata($sess_data);
 		}

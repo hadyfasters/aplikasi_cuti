@@ -62,12 +62,19 @@ class Departemen extends CI_Controller {
 		$post = $this->input->post();
 
         $id = $post['kode_dptm'];
-
         $data = array(
-        	'nm_dptm' => $post['nm_dptm'],
-        	'inisial_dptm' => $post['inisial'],
-        	'status_dptm' => $post['status_dptm']
+            'nm_dptm' => $post['nm_dptm'],
+            'inisial_dptm' => $post['inisial'],
+            'status_dptm' => $post['status_dptm']
         );
+
+        if($id == 'D.01.16.11.001')
+        {
+            $data = array(
+                'nm_dptm' => $post['nm_dptm'],
+                'inisial_dptm' => $post['inisial']
+            );
+        }
 
         $proceed = $this->Departemen_model->updateDepartemen($data,$id);
 

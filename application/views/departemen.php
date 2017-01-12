@@ -90,7 +90,11 @@
 							?>				
 						</td>
 						<td>
-							<a href="<?php echo base_url('departemen?id='.$dptm->kode_dptm); ?>">Edit</a> | <a href="<?php echo base_url('departemen/delete?id='.$dptm->kode_dptm); ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')">Delete</a>
+							<a href="<?php echo base_url('departemen?id='.$dptm->kode_dptm); ?>">Edit</a> 
+							<?php if($dptm->kode_dptm <> 'D.01.16.11.001') : ?> 
+							| 
+							<a href="<?php echo base_url('departemen/delete?id='.$dptm->kode_dptm); ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')">Delete</a>
+							<?php endif; ?>
 						</td>
 					</tr>
 					<?php $no++; endforeach; ?>

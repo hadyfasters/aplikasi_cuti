@@ -17,7 +17,17 @@ class Karyawan extends CI_Controller {
 		if(!empty($this->session->userdata('logged_in'))) {
 			$data['message'] = $this->session->flashdata('errors');
 			$data['title'] = 'Data Karyawan';
-			$data['list'] = $this->Karyawan_model->getAll();
+
+			$data['list'] = array();
+			if($this->session->userdata('divisi') == 'D.01.16.11.002')
+			{
+				$data['list'] = $this->Karyawan_model->getAll();
+			}
+			elseif($this->session->userdata('isTheBoss') > 0)
+			{
+				$data['list'] = $this->Karyawan_model->getAllinDivisi($this->session->userdata('divisi'));
+			}
+
 			$data['content'] = $this->load->view('karyawan', $data, true);
 			$this->load->view('template',$data);
 		}else{

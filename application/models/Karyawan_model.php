@@ -34,6 +34,20 @@ class Karyawan_Model extends CI_Model {
         return $query->result();
     }
 
+    public function getAllinDivisi($id)
+    {
+        $bq = "SELECT * FROM ms_karyawan WHERE departemen='".$id."'";
+        $query = $this->db->query($bq);
+        return $query->result();
+    }
+
+    public function getAllBawahan($id)
+    {
+        $bq = "SELECT * FROM ms_posisi_karyawan WHERE atasan_1='".$id."'";
+        $query = $this->db->query($bq);
+        return $query->result();
+    }
+
     public function getUltah()
     {
         $uq = "SELECT * FROM ms_karyawan a LEFT JOIN ms_departemen b ON b.kode_dptm=a.departemen LEFT JOIN ms_jabatan c ON c.kode_jabatan=a.jabatan WHERE a.tgl_lahir='".date('Y-m-d')."'";

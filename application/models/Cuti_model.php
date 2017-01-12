@@ -34,8 +34,8 @@ class Cuti_Model extends CI_Model {
 
     public function getAll()
     {
-        $sq = "SELECT a.no_pengajuan,a.nik,b.nm_lengkap,c.nm_cuti,d.nama_jabatan,e.nm_dptm,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_karyawan b ON b.nik=a.nik LEFT JOIN ms_cuti c ON c.kode_cuti=a.cuti LEFT JOIN ms_jabatan d ON d.kode_jabatan=b.jabatan LEFT JOIN ms_departemen e ON e.kode_dptm=b.departemen";
-        $query = $this->db->query($sq);
+        $sq = "SELECT a.no_pengajuan,a.nik,b.nm_lengkap,c.nm_cuti,d.nama_jabatan,e.nm_dptm,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_karyawan b ON b.nik=a.nik LEFT JOIN ms_cuti c ON c.kode_cuti=a.cuti LEFT JOIN ms_jabatan d ON d.kode_jabatan=b.jabatan LEFT JOIN ms_departemen e ON e.kode_dptm=b.departemen ORDER BY a.tgl_pengajuan DESC";
+        $query = $this->db->query($sq); 
         return $query->result();
     }
 
@@ -49,6 +49,13 @@ class Cuti_Model extends CI_Model {
     public function getSisaCuti($nik,$cuti)
     {
         $sq = "SELECT a.no_pengajuan,a.nik,a.cuti,b.nm_cuti,b.jumlah_max,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_cuti b ON b.kode_cuti=a.cuti WHERE a.nik='".$nik."' AND a.cuti='".$cuti."' AND YEAR(tgl_pengajuan)='".date('Y')."'";
+        $query = $this->db->query($sq);
+        return $query->result();
+    }
+
+    public function getByDivisi($code)
+    {
+        $sq = "SELECT a.no_pengajuan,b.nm_lengkap,c.nm_cuti,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_karyawan b ON b.nik=a.nik LEFT JOIN ms_cuti c ON c.kode_cuti=a.cuti WHERE a.departemen='".$code."'";
         $query = $this->db->query($sq);
         return $query->result();
     }

@@ -85,27 +85,30 @@
 
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-      <?php if($this->session->userdata('logged_in') == 'loginasadmin') { ?>
-        <li class="header text-center">MASTER</li>
+      <?php if($this->session->userdata('logged_in')=='loginasadmin' && ($this->session->userdata('isTheBoss') > 0 ||  $this->session->userdata('divisi')=='D.01.16.11.002')) { ?>
+        <li class="header text-center">MASTER DATA</li>
+        <?php
+            if($this->session->userdata('logged_in') == "loginasadmin" && $this->session->userdata('divisi')=='D.01.16.11.002'){
+        ?>
         <li><a href="<?php echo base_url('departemen'); ?>"><i class="fa fa-circle-o"></i><span>Departemen / Divisi</span></a></li>
         <li><a href="<?php echo base_url('jabatan'); ?>"><i class="fa fa-circle-o"></i><span>Jabatan</span></a></li>
         <li><a href="<?php echo base_url('jenis_cuti'); ?>"><i class="fa fa-circle-o"></i><span>Jenis Cuti</span></a></li>
+        <?php } ?>
         <li><a href="<?php echo base_url('karyawan'); ?>"><i class="fa fa-circle-o"></i><span>Karyawan</span></a></li>
        <!--  <li><a href="<?php echo base_url('posisi'); ?>"><i class="fa fa-circle-o"></i><span>Posisi Karyawan</span></a></li> -->
       <?php }?>
         <li class="header text-center">CUTI</li>
         <li><a href="<?php echo base_url('cuti'); ?>"><i class="fa fa-circle-o"></i><span>Daftar Pengajuan Cuti</span></a></li>
         <?php
-            if($this->session->userdata('prioritas') == 1):
+            if($this->session->userdata('prioritas') == 1 && $this->session->userdata('isTheBoss') > 0):
         ?>
         <li><a href="<?php echo base_url('approval'); ?>"><i class="fa fa-circle-o"></i><span>Approval Cuti</span></a></li>
-        <li><a href="<?php echo base_url('validasi'); ?>"><i class="fa fa-circle-o"></i><span>Validasi Cuti</span></a></li>
+        <?php if($this->session->userdata('divisi') == 'D.01.16.11.002'): ?>
+        <li><a href="<?php echo base_url('validasi'); ?>"><i class="fa fa-circle-o"></i><span> Validasi Cuti</span></a></li>
+        <?php endif; ?>
         <li class="header text-center">LAPORAN</li>
         <li><a href="<?php echo base_url('report'); ?>"><i class="fa fa-circle-o"></i><span>Rekap Cuti</span></a></li>
         <?php endif; ?>
-        <!-- <li class="header text-center">IZIN / SAKIT</li>
-        <li><a href="<?php echo base_url('izin/list'); ?>"><i class="fa fa-circle-o"></i><span>Daftar Pengajuan Izin/Sakit</span></a></li>
-        <li><a href="<?php echo base_url('izin/add'); ?>"><i class="fa fa-circle-o"></i><span>Input Izin/Sakit</span></a></li> -->
       </ul>
 
       <?php } ?>

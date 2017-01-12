@@ -73,7 +73,7 @@
 	</div>
 	<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
 		<h4 class="dashboard_title text-center" style="background:#e8e8e8;padding:3px;">Riwayat Posisi</h4>
-		<?php if($this->session->userdata('prioritas')==1) : ?>
+		<?php if($this->session->userdata('prioritas')==1 && $this->session->userdata('divisi')=='D.01.16.11.002') : ?>
 		<div class="button-toolbar">
 			<a href="<?php echo base_url('posisi/add?id='.$dt[0]->nik) ?>" class="btn btn-primary">Update Posisi</a>
 		</div>
@@ -90,7 +90,7 @@
 					<th>Tgl. Kontrak</th>
 					<th>No. Kontrak</th>
 					<?php
-					    if($this->session->userdata('logged_in') == "loginasadmin"){
+					    if($this->session->userdata('logged_in') == "loginasadmin" && $this->session->userdata('divisi')=='D.01.16.11.002'){
 					?>
 					<th>Aksi</th>
 					<?php } ?>
@@ -106,9 +106,13 @@
 					<td><?php echo $dt->atasan_langsung; ?></td>
 					<td><?php echo $dt->tgl_kontrak; ?></td>
 					<td><?php echo $dt->no_kontrak; ?></td>
+					<?php
+					    if($this->session->userdata('logged_in') == "loginasadmin" && $this->session->userdata('divisi')=='D.01.16.11.002'){
+					?>
 					<td>
 						<a href="<?php echo base_url('posisi/delete?no='.$dt->no_kontrak); ?>" onclick="return confirm('Apakah anda yakin menghapus data ini?')">Delete</a>
 					</td>
+					<?php } ?>
 				</tr>
 				<?php $no++; endforeach; ?>
 			</tbody>

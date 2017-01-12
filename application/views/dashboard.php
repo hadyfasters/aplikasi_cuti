@@ -6,18 +6,22 @@
 				<table id="tbl_cuti" class="table table-bordered table-striped table-condensed" cellspacing="0" width="100%">
 					<thead style="background:#e8e8e8;">
 						<tr>
+							<th>Tanggal Pengajuan Cuti</th>
 							<th>Nama Karyawan</th>
 							<th>Jabatan</th>
 							<th>Divisi / Departemen</th>
+							<th>Tanggal Cuti</th>
 						</tr>
 					</thead>
 					<tbody>
 					<?php 
 						foreach ($cuti as $val) {
 						echo '<tr>';
+						echo '<td>'.$val->tgl_pengajuan.'</td>';
 						echo '<td>'.$val->nm_lengkap.'</td>';
 						echo '<td>'.$val->nama_jabatan.'</td>';
 						echo '<td>'.$val->nm_dptm.'</td>';
+						echo '<td>'.$val->tgl_awal.' s/d '.$val->tgl_akhir.'</td>';
 						echo '</tr>';
 						}
 					?>

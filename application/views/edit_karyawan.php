@@ -108,6 +108,7 @@
 			<label for="ttd">Upload Scan TTD tidak lebih dari 2MB. (image only)</label>
 			<input type="file" name="ttd" id="ttd" class="form-control input-sm" accept="image/*" placeholder="Scan Tanda Tangan">
 		</div>
+      <?php if($this->session->userdata('logged_in')=='loginasadmin' && $this->session->userdata('divisi')=='D.01.16.11.002') { ?>
 		<div class="form-group">
 			<label>Status Karyawan :</label>
 			<div class="checkbox">
@@ -119,6 +120,7 @@
 				</label>
 			</div>
 		</div>
+      <?php }?>
 	</div>
 	<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
 		<div class="form-group text-center">

@@ -1,5 +1,7 @@
 $(document).ready(function() {
-	$('#tbl_cuti').DataTable();
+	$('#tbl_cuti').DataTable({
+		'aaSorting' : [[0,'desc']]
+	});
 	$('#tbl_izin').DataTable();
 	$('#tbl_ultah').DataTable();
 	$('#tbl_data').DataTable();

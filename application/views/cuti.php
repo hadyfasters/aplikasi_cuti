@@ -51,6 +51,9 @@
 				<?php if($dt->approval == 1 && $dt->validasi == 1) : ?>
 					<a href="<?php echo base_url('cuti/print_out?no='.$dt->no_pengajuan); ?>" class="text-success" target="_blank"><i class="fa fa-print">&nbsp;</i></a>
 				<?php endif; ?>
+				<?php if($dt->approval == 2) : ?>
+					<a href="<?php echo base_url('cuti/print_out?no='.$dt->no_pengajuan); ?>" class="text-success" target="_blank"><i class="fa fa-print">&nbsp;</i></a>
+				<?php endif; ?>
 
 				<?php
 				    if($this->session->userdata('prioritas') == 1) :

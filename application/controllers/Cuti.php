@@ -19,11 +19,14 @@ class Cuti extends CI_Controller {
 		if(!empty($this->session->userdata('logged_in'))) {
 			$data['message'] = $this->session->flashdata('errors');
 			$data['title'] = 'Data Cuti';
-			if($this->session->userdata('logged_in') == "loginasadmin")
+			if($this->session->userdata('logged_in') == "loginasadmin" && $this->session->userdata('divisi')=='D.01.16.11.002')
 			{
 				$data['list'] = $this->Cuti_model->getAll();
 			}else{
 				$data['list'] = $this->Cuti_model->getByNIK($this->session->userdata('nik'));
+				if($this->session->userdata('isTheBoss') > 0) {
+					$data['list'] = $this->Cuti_model->getByDivisi($this->session->userdata('divisi'));
+				}
 			}
 			$data['content'] = $this->load->view('cuti', $data, true);
 			$this->load->view('template',$data);
