@@ -18,7 +18,7 @@ class Validasi extends CI_Controller {
 	{
 		if(!empty($this->session->userdata('logged_in'))) {
 			$data['message'] = $this->session->flashdata('errors');
-			$data['title'] = 'Data Cuti';
+			$data['title'] = 'Validasi Data Cuti';
 			if($this->session->userdata('logged_in') == "loginasadmin")
 			{
 				$data['list'] = $this->Cuti_model->getAll();

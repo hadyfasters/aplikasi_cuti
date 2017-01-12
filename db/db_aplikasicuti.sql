@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2017 at 01:54 PM
+-- Generation Time: Jan 12, 2017 at 04:11 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `dt_pengajuan_cuti` (
   `no_pengajuan` varchar(50) NOT NULL,
   `nik` varchar(50) NOT NULL,
+  `departemen` varchar(50) NOT NULL,
   `cuti` varchar(50) NOT NULL,
   `tgl_awal` date NOT NULL,
   `tgl_akhir` date NOT NULL,
@@ -43,10 +44,10 @@ CREATE TABLE `dt_pengajuan_cuti` (
 -- Dumping data for table `dt_pengajuan_cuti`
 --
 
-INSERT INTO `dt_pengajuan_cuti` (`no_pengajuan`, `nik`, `cuti`, `tgl_awal`, `tgl_akhir`, `jumlah`, `tgl_pengajuan`, `approval`, `validasi`, `keterangan`) VALUES
-('ISC.04.16.11.001', '38040.01.10.01.15', 'JC.03.16.11.001', '2015-12-05', '2015-12-07', 3, '2015-11-28', 2, 0, 'Urusan Keluarga'),
-('ISC.04.16.11.002', '16840.09.21.01.16', 'JC.03.16.11.001', '2016-12-14', '2016-12-16', 3, '2016-11-28', 1, 1, 'Urusan Keluarga'),
-('ISC.04.16.12.001', '38040.01.10.01.15', 'JC.03.16.11.001', '2016-12-20', '2016-12-23', 3, '2016-12-13', 1, 0, 'Urusan Keluarga');
+INSERT INTO `dt_pengajuan_cuti` (`no_pengajuan`, `nik`, `departemen`, `cuti`, `tgl_awal`, `tgl_akhir`, `jumlah`, `tgl_pengajuan`, `approval`, `validasi`, `keterangan`) VALUES
+('ISC.04.16.11.001', '38040.01.10.01.15', 'D.01.16.11.001', 'JC.03.16.11.001', '2015-12-05', '2015-12-07', 3, '2015-11-28', 2, 0, 'Urusan Keluarga'),
+('ISC.04.16.11.002', '16840.09.21.01.16', 'D.01.16.11.001', 'JC.03.16.11.001', '2016-12-14', '2016-12-16', 3, '2016-11-28', 1, 1, 'Urusan Keluarga'),
+('ISC.04.16.12.001', '38040.01.10.01.15', 'D.01.16.11.001', 'JC.03.16.11.001', '2016-12-20', '2016-12-23', 3, '2016-12-13', 1, 0, 'Urusan Keluarga');
 
 -- --------------------------------------------------------
 
@@ -88,9 +89,9 @@ CREATE TABLE `ms_departemen` (
 --
 
 INSERT INTO `ms_departemen` (`kode_dptm`, `nm_dptm`, `inisial_dptm`, `status_dptm`) VALUES
-('D.01.16.11.001', 'Human Resources', 'HRD', 1),
-('D.01.16.11.002', 'Information Technology', 'ITD', 1),
-('D.01.16.11.003', 'Direktorat', 'Direktorat', 1);
+('D.01.16.11.001', 'Direktorat', 'Direktorat', 1),
+('D.01.16.11.002', 'Human Resources', 'HRD', 1),
+('D.01.16.11.003', 'Information Technology', 'ITD', 1);
 
 -- --------------------------------------------------------
 
@@ -111,10 +112,10 @@ CREATE TABLE `ms_jabatan` (
 --
 
 INSERT INTO `ms_jabatan` (`kode_jabatan`, `nama_jabatan`, `inisial_jabatan`, `prioritas_jabatan`, `status_jabatan`) VALUES
-('J.02.16.11.001', 'Kepala Divisi', 'Kadiv', 0, 1),
-('J.02.16.11.002', 'Kepala Bagian', 'Kabag', 0, 1),
+('J.02.16.11.001', 'Kepala Divisi', 'Kadiv', 1, 1),
+('J.02.16.11.002', 'Kepala Bagian', 'Kabag', 1, 1),
 ('J.02.16.11.003', 'Officer', 'Officer', 0, 1),
-('J.02.16.11.004', 'Direktur', 'Direktur', 0, 1),
+('J.02.16.11.004', 'Direktur', 'Direktur', 1, 1),
 ('J.02.16.11.005', 'Staf', 'Staf', 0, 1),
 ('J.02.16.11.006', 'Administrator', 'Admin', 1, 1);
 
@@ -149,9 +150,10 @@ CREATE TABLE `ms_karyawan` (
 --
 
 INSERT INTO `ms_karyawan` (`nik`, `nm_lengkap`, `alamat`, `tgl_lahir`, `tmpt_lahir`, `jenis_kelamin`, `agama`, `status_nikah`, `no_telp`, `tgl_masuk`, `email`, `password`, `foto`, `ttd`, `departemen`, `jabatan`, `status_karyawan`) VALUES
-('16840.09.21.01.16', 'Budiman Sanjaya', 'Jakarta', '1990-09-21', 'Jakarta', 'pria', 'Islam', 'belum menikah', '082373338986', '2016-01-01', 'budiman@cestoria.com', 'c4ca4238a0b923820dcc509a6f75849b', '1684009210116_FOTO.png', '', 'D.01.16.11.003', 'J.02.16.11.004', 1),
-('38040.01.10.01.15', 'Admin e-Employee', 'Jakarta', '1989-01-10', 'Jakarta', 'pria', 'Islam', 'belum menikah', '021-123456', '2015-01-01', 'admin@qpro.com', '21232f297a57a5a743894a0e4a801fc3', '3804001100115_FOTO.png', '3804001100115_TTD.png', 'D.01.16.11.003', 'J.02.16.11.006', 1),
-('82995.10.10.11.16', 'Santi Lorena', 'Jakarta			', '1989-10-10', 'Jakarta', 'wanita', 'Islam', 'belum menikah', '082373338986', '2016-11-08', 'santi@qpro.com', '202cb962ac59075b964b07152d234b70', '8299510101116_FOTO.png', '', 'D.01.16.11.001', 'J.02.16.11.001', 1);
+('16840.09.21.01.16', 'Budiman Sanjaya', 'Jakarta', '1990-09-21', 'Jakarta', 'pria', 'Islam', 'belum menikah', '082373338986', '2016-01-01', 'budiman@cestoria.com', 'c4ca4238a0b923820dcc509a6f75849b', '1684009210116_FOTO.png', '', 'D.01.16.11.001', 'J.02.16.11.004', 1),
+('38040.01.10.01.15', 'Admin e-Employee', 'Jakarta', '1989-01-10', 'Jakarta', 'pria', 'Islam', 'belum menikah', '021-123456', '2015-01-01', 'admin@qpro.com', '21232f297a57a5a743894a0e4a801fc3', '3804001100115_FOTO.png', '3804001100115_TTD.png', 'D.01.16.11.001', 'J.02.16.11.006', 1),
+('42819.07.16.06.12', 'Jikuni', 'Jl. Ampera Raya No.11, Ragunan - Pasar Minggu', '1986-07-16', 'Jakarta', 'pria', 'Islam', 'menikah', '12344556677', '2012-06-06', 'jikuni@qpro.com', 'c4ca4238a0b923820dcc509a6f75849b', '', '', 'D.01.16.11.002', 'J.02.16.11.002', 1),
+('82995.10.10.11.16', 'Santi Lorena', 'Jakarta			', '1989-10-10', 'Jakarta', 'wanita', 'Islam', 'belum menikah', '082373338986', '2016-11-08', 'santi@qpro.com', '202cb962ac59075b964b07152d234b70', '8299510101116_FOTO.png', '', 'D.01.16.11.002', 'J.02.16.11.001', 1);
 
 -- --------------------------------------------------------
 
@@ -175,10 +177,11 @@ CREATE TABLE `ms_posisi_karyawan` (
 --
 
 INSERT INTO `ms_posisi_karyawan` (`nik`, `kode_jabatan`, `departemen`, `atasan_1`, `atasan_2`, `tgl_kontrak`, `no_kontrak`, `file_kontrak`) VALUES
-('16840.09.21.01.16', 'J.02.16.11.001', 'D.01.16.11.001', 'J.02.16.11.004', '', '2010-01-01', 'KT.01.01.2010.001', ''),
-('38040.01.10.01.15', 'J.02.16.11.006', 'D.01.16.11.003', 'J.02.16.11.002', 'J.02.16.11.001', '2015-01-01', 'KT.01.01.2015.001', ''),
-('16840.09.21.01.16', 'J.02.16.11.004', 'D.01.16.11.003', '', '', '2016-01-01', 'KT.01.01.2016.001', ''),
-('82995.10.10.11.16', 'J.02.16.11.001', 'D.01.16.11.001', 'J.02.16.11.004', '', '2016-11-16', 'KT/I/11/2016/001', '');
+('16840.09.21.01.16', 'J.02.16.11.001', 'D.01.16.11.002', 'J.02.16.11.004', '', '2010-01-01', 'KT.01.01.2010.001', ''),
+('38040.01.10.01.15', 'J.02.16.11.006', 'D.01.16.11.001', 'J.02.16.11.002', 'J.02.16.11.001', '2015-01-01', 'KT.01.01.2015.001', ''),
+('16840.09.21.01.16', 'J.02.16.11.004', 'D.01.16.11.001', '', '', '2016-01-01', 'KT.01.01.2016.001', ''),
+('42819.07.16.06.12', 'J.02.16.11.002', 'D.01.16.11.002', 'J.02.16.11.001', 'J.02.16.11.004', '2012-07-06', 'KT.01.06.2012.001', ''),
+('82995.10.10.11.16', 'J.02.16.11.001', 'D.01.16.11.002', 'J.02.16.11.004', '', '2016-11-16', 'KT.01.11.2016.001', '');
 
 --
 -- Indexes for dumped tables
