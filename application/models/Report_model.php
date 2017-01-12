@@ -15,6 +15,13 @@ class Report_Model extends CI_Model {
         return $query->result();
     }
 
+    public function getAllReportByDivisi($id)
+    {
+        $sq = "SELECT a.no_pengajuan,a.nik,b.nm_lengkap,c.nm_cuti,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_karyawan b ON b.nik=a.nik LEFT JOIN ms_cuti c ON c.kode_cuti=a.cuti WHERE a.departemen='".$id."'";
+        $query = $this->db->query($sq);
+        return $query->result();
+    }
+
     public function getAllReportByMonth($month)
     {
         $sq = "SELECT a.no_pengajuan,a.nik,b.nm_lengkap,c.nm_cuti,a.tgl_awal,a.tgl_akhir,a.jumlah,a.tgl_pengajuan,a.approval,a.validasi,a.keterangan FROM dt_pengajuan_cuti a LEFT JOIN ms_karyawan b ON b.nik=a.nik LEFT JOIN ms_cuti c ON c.kode_cuti=a.cuti WHERE MONTH(tgl_pengajuan)=".$month;

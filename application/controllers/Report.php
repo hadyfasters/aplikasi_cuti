@@ -53,7 +53,13 @@ class Report extends CI_Controller {
 
 		define('FPDF_FONTPATH',$this->config->item('fonts_path')); 
 
-		$data['hasil'] = $this->Report_model->getAllReport(); 
+		if($this->session->userdata('divisi') == 'D.01.16.11.002')
+		{
+			$data['hasil'] = $this->Report_model->getAllReport(); 
+		}else{
+			$data['hasil'] = $this->Report_model->getAllReportByDivisi($this->session->userdata('divisi')); 
+		}
+		
 		$data['date'] = "";
 		if($post['month']<>'')
 		{
