@@ -1,0 +1,10 @@
+html,body{
+	height: 100%;
+}
+
+.img_box img{
+	-o-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #ccc;
+}
